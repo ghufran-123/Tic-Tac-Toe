@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</head>
+<body class="body">
+    <div class="container-fluid2">
+        <h6 class="h6" style="color: aliceblue; font-size: 2rem;">X
+            <span id="gamewinX">-</span>
+        </h6>
+        <h6 class="h62" style="color: aliceblue; font-size: 2rem;">O
+            <span id="gamewin0">-</span>
+        </h6>
+    </div>
+    <div id="win"></div>
+    
+    <h1 class="ongamewin d-hn" id="winO">O</h1>
+    <h1 class="ongamewin d-hn" id="winX">X</h1>
+
+
+    <h1 class="ongamewin d-hn" id="XO">X
+        <span class="O">O</span></h1>
+    <h1 class="ongamewin d-hn" id="draw">Draw!</h1>
+
+
+    <h1 class="d-hn" id="winner">Winner!</h1>
+    <div class="container-fluid">
+            <img src="./img/Untitled-1.png" alt="">
+        <div id="b1" class="box">
+            <h1 id="b1X" class="font d-hn X">X</h1>
+            <h1 id="b10" class="font d-hn O">O</h1>
+        </div>
+        <div id="b2" class="box">
+            <h1 id="b2X" class="font d-hn X">X</h1>
+            <h1 id="b20" class="font d-hn O">O</h1>
+        </div>
+        <div id="b3" class="box">
+            <h1 id="b3X" class="font d-hn X">X</h1>
+            <h1 id="b30" class="font d-hn O">O</h1>
+        </div>
+        <div id="b4" class="box">
+            <h1 id="b4X" class="font d-hn X">X</h1>
+            <h1 id="b40" class="font d-hn O">O</h1>
+        </div>
+        <div id="b5" class="box">
+            <h1 id="b5X" class="font d-hn X">X</h1>
+            <h1 id="b50" class="font d-hn O">O</h1>
+        </div>
+        <div id="b6" class="box">
+            <h1 id="b6X" class="font d-hn X">X</h1>
+            <h1 id="b60" class="font d-hn O">O</h1>
+        </div>
+        <div id="b7" class="box">
+            <h1 id="b7X" class="font d-hn X">X</h1>
+            <h1 id="b70" class="font d-hn O">O</h1>
+        </div>
+        <div id="b8" class="box">
+            <h1 id="b8X" class="font d-hn X">X</h1>
+            <h1 id="b80" class="font d-hn O">O</h1>
+        </div>
+        <div id="b9" class="box">
+            <h1 id="b9X" class="font d-hn X">X</h1>
+            <h1 id="b90" class="font d-hn O">O</h1>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</body>
+<script>
+    var chance=0
+$(".box").click(function(e)
+{ 
+    var id=this.id;
+    chance++;
+    show(id);
+})
+var playerXChance=[];
+var player0Chance=[];
+function show(id)
+{
+    if((chance%2)==0)
+    {
+        // console.log("#"+ id + "#" + id + "X");
+        $(".h6").removeClass("brchng");
+        $(".h62").addClass("brchng");
+        $("#"+ id + " #" + id + "X").removeClass("d-hn");
+        playerXChance.push(id);
+        checkX();
+    }
+    else
+    {
+        // console.log("x ki chancxe h")
+        $(".h62").removeClass("brchng");
+        $(".h6").addClass("brchng");
+        // console.log("#"+ id + "." + id + "X in else");
+        $("#"+ id + " #" + id + "0").removeClass("d-hn");
+        player0Chance.push(id);
+        check0();
+    }
+}
+var ch=0;
+function checkX()
+{
+    // console.log(playerXChance.length)
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b1")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b2")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b3")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b1")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b4")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b7")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b7")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b8")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b9")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b9")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b6")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b3")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b4")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b5")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b6")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b2")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b5")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b8")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b3")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b5")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b7")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn").addClass("O");;
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for(var i=0;i<playerXChance.length;i++)
+    {
+        if(playerXChance[i]=="b1")
+        {
+            for(var j=0;j<playerXChance.length;j++)
+            {
+                if(playerXChance[j]=="b5")
+                {
+                    for(var k=0;k<playerXChance.length;k++)
+                    {
+                        if(playerXChance[k]=="b9")
+                        {
+                            console.log("Winner X");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winX").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+function check0(){
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b1")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b5")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b9")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b1")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b2")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b3")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b4")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b5")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b6")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b7")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b8")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b9")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b1")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b4")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b7")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b2")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b5")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b8")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b3")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b6")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b9")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    for(var i=0;i<player0Chance.length;i++)
+    {
+        if(player0Chance[i]=="b3")
+        {
+            for(var j=0;j<player0Chance.length;j++)
+            {
+                if(player0Chance[j]=="b5")
+                {
+                    for(var k=0;k<player0Chance.length;k++)
+                    {
+                        if(player0Chance[k]=="b7")
+                        {
+                            console.log("Winner 0");
+                            $("#onWinHdn").addClass("d-hn");
+                            $("#winO").fadeIn(1000).removeClass("d-hn");
+                            $("#winner").fadeIn(1000).removeClass("d-hn");
+                            $("div.container-fluid").fadeOut(700).addClass("d-hn");
+                            ch++;
+                        }
+                    }
+                }
+            }
+        }
+    }
+draw();
+}
+function draw()
+{
+    console.log(chance);
+    if(ch==0 && chance==9)
+    {
+        $("#onWinHdn").addClass("d-hn");
+        $("#draw").fadeIn(1000).removeClass("d-hn");
+        $("#XO").fadeIn(1000).removeClass("d-hn");
+        $("div.container-fluid").fadeOut(700).addClass("d-hn");
+    }
+}
+</script>
+</html>
